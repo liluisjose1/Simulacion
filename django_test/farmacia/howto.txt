@@ -1,0 +1,4 @@
+pip install django django-material django-viewflow
+TOXENV=py36-dj111 tox -- python3 manage.py migrate --settings=demo.settings
+TOXENV=py36-dj111 tox -- python3 manage.py loaddata demo/fixtures/* --settings=demo.settings
+TOXENV=py36-dj111 tox -- python3 manage.py runserver --settings=demo.settings

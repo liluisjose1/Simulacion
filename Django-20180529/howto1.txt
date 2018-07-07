@@ -1,0 +1,135 @@
+# verificar las librerias de mariadb con python
+aptitude search python3-mysqldb
+# si no se encuentra instalar:
+
+aptitude install python3-mysqldb
+#instalar la libreria de mariadb client 
+aptitude install default-libmysqlclient-dev
+
+
+
+#como usuario root instalar:
+aptitude install python3-pip
+
+ pip3 install virtualenvwrapper
+
+#editar el .bashrc  del usuario (no root)
+nano /home/user/.bashrc 
+
+A continuación volver a recargar el fichero de inicio ejecutando el siguiente comando en el terminal:
+   source ~/.bashrc 
+   
+   Crear el entorno virtual:
+   mkvirtualenv my_django_environment
+   
+   #ver los entornnos virtuales
+   workon
+  cambiarse al entorno virtual creado:
+   workon my_django_environment
+  # como se trabajar con mariadb instalar el cliente de mariadb python3
+  pip3 install mysqlclient
+  
+  # instalar django
+  pip3 install django
+  
+  #crear un directorio de prueba
+  mkdir django_test
+#cambiarse al directorio recien creado:
+cd django_test/
+#crear un esquelto del sitio:
+django-admin startproject mytestsite
+
+#arrancar el servidor web de desarrollo desde esta carpeta usando manage.py y el comando runserver:
+python3 manage.py runserver 
+#vamos al navegador y vemos que ya tenemos django corriendo, en la sig. direccion:
+127.0.0.1:8000
+
+#Crear un nuevo proyecto en el directorio django_test:
+mkdir locallibrary 
+#nos cambiamos al directorio creado:
+cd locallibrary
+#Crear el nuevo proyecto usando el comando django-admin startproject
+django-admin startproject locallibrary
+#despues de creado, nos cambiamos al directorio del proyectyo recien iniciado
+cd locallibrary
+
+#A continuación, ejecuta el siguiente comando para crear la aplicación catalog que vivirá dentro de nuestro proyecto locallibrary 
+#(éste debe ejecutarse en la misma carpeta que el manage.py de tu proyecto):
+python3 manage.py startapp catalog
+
+
+#ir a phpmyadmin y crear una base de datos de nombre biblio
+
+#    
+ # ir a editar locallibrary/locallibrary/settings.py
+#y agregar en la lista de installed_apps:
+
+'catalog.apps.CatalogConfig', 
+
+#modificar la parte de la bd sqlite a mariadb, quedando asi:
+DATABASES = {
+    'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'biblio',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+    }
+}
+
+#editar lo de las url editando locallibrary/locallibrary/urls.py  y agregar:
+
+# Use include() to add paths from the catalog application Agregado posteriormente:
+from django.urls import include
+
+urlpatterns += [
+    path('catalog/', include('catalog.urls')),
+]
+#Add URL maps to redirect the base URL to our application
+from django.views.generic import RedirectView
+urlpatterns += [
+    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+]
+
+# Use static() to add url mapping to serve static files during development (only)
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+ #en el dir. catalog crea urls.py y agregar:
+ from django.conf.urls import url
+
+from . import views
+
+
+urlpatterns = [
+
+]
+#crear los modelos dentro del directorio catalog en models.py
+
+
+
+#agregar las migraciones
+python3 manage.py makemigrations
+python3 manage.py migrate
+ 
+
+#Registrar los modelos: en/locallibrary/catalog/admin.py agregar:
+
+admin.site.register(Book)
+admin.site.register(Author)
+admin.site.register(Genre)
+admin.site.register(BookInstance)
+
+#crear el superusuario admin(debe agregar un usuario y contraseña):
+python3 manage.py createsuperuser
+#correr de nuevo el servidor:
+python3 manage.py runserver
+ir al sitio: http://127.0.0.1:8000/admin
+
+ 
+  

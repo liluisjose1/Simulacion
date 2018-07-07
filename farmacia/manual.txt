@@ -1,0 +1,7 @@
+1. Importar archivo Sql en phpMyadmin sin nombrar db
+2. Iniciar entorno virtual
+3. Ejecutar en promp pip3 install -r requeriments.txt
+4. Ejecutar python3 manage.py makemigrations inventario 
+5. Ejecutar python3 manage.py makemigrations ventas
+5. Ejecutar python3 manage.py migrate
+6. Ejecutar puthon3 manage.py runserver

@@ -1,0 +1,96 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  {% block title %}<title>Farmacia UES | FMO</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="shortcut icon" href="https://cdn2.iconfinder.com/data/icons/medical-icons-110/512/medical_icon_2-512.png">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/scrolling-nav.css' %}" rel="stylesheet">
+
+
+
+  <!-- Add additional CSS in static file -->
+  {% load static %}
+</head>
+<body id="page-top" style="font-size:10px;" >
+    {% block sidebar %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-info bg-info fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger text-white " href="#page-top"><i class="fa fa-pills"></i> Farmacia UES | FMO</a>
+        <button class="navbar-toggler navbar-dark " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger text-white" href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger text-white" href="{% url 'admin:index' %}">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% endblock %}
+    <br> <br> <br>
+    <div class="container-fluid">
+      <!-- Content here -->
+      <div class="row">
+        <div class="col-md-8">
+          {% block content1 %}
+
+          {% endblock %}
+        </div>
+        <div class="col-md-4">
+          {% block content2 %}
+
+          {% endblock %}
+        </div>
+
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="py-5 bg-info">
+      <div class="container">
+        <p class="m-0 text-center text-white"><strong>Created by</strong></p>
+        <p class="m-0 text-center text-white">Luis Jose Iraheta Medrano IM15005</p>
+        <p class="m-0 text-center text-white">Yenifer Zuleyma Garcia Melendez GM15002</p>
+        <p class="m-0 text-center text-white">Claudia Patricia Salamanca Martinez SM13038 </p>
+        <p class="m-0 text-center text-white">Ana Ruth Sanchez Henriquez   SH13012</p>
+        <br>
+        <p class="m-0 text-center text-white"><strong>Copyright &copy; Tecnicas de Simulacion Django 2018</strong></p>
+      </div>
+      <!-- /.container -->
+    </footer>
+  <script type="text/javascript">
+    function printDiv(cat) {
+       var printContents = document.getElementById(cat).innerHTML;
+       var originalContents = document.body.innerHTML;
+
+       document.body.innerHTML = printContents;
+
+       window.print();
+
+       document.body.innerHTML = originalContents;
+  }
+  </script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="{% static 'js/scrolling-nav.js' %}"></script>
+</body>
+</html>

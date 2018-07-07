@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Blog Personal </h1>
+
+  <p>Bienvenidos al sitio, un sitio muy b&aacute;sico sitio web hecho con Django.</p>
+
+<h2>Contenido</h2>
+
+  <p>Actualmente hay :</p>
+  <ul>
+	<h5 class='text-primary'> 
+    <li><strong>Entradas:</strong> {{ num_post }}</li>
+   
+    </h5> 
+  </ul>
+
+{% endblock %}

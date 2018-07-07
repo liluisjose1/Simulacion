@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Post List</h1>
+
+    {% if post_list %}
+
+
+      {% for post in post_list %}
+    
+        <div>
+            <p>publicado: {{ post.published_date }}</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+   
+
+
+    {% else %}
+      <p>There are no posts in the site.</p>
+    {% endif %}       
+{% endblock %}

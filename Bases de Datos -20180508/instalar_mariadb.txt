@@ -1,0 +1,27 @@
+Prerrequisitos:
+Instalar apache y los modulos para php7
+-sudo apt-get  install apache2  libapache2-mod-php7.0  php7.0 
+Instalar mariadb
+ sudo apt-get  install mariadb-server 
+Instalar phpmyadmin y configurar para maria db
+sudo apt-get  install phpmyadmin php-mbstring php-gettext 
+cuando pregunte Web server to reconfigure automatically:  seleccionar apache2
+
+cuando pregunte : Configure database for phpmyadmin with dbconfig-common?  
+Responder NO
+Configurar phpmyadmin para login con usuario root(de mariadb):
+en consola:
+ mysql -u root
+ MariaDB [(none)]> USE mysql;
+MariaDB [(mysql)]> UPDATE user SET password=PASSWORD('YourPasswordHere') WHERE User='root' AND Host = 'localhost';
+ 
+ luego dentro de mariadb debe aparecer un prompt:
+ MariaDB [mysql]>
+
+ejecutar estos comando:
+ update user set plugin='' where user='root'; 
+ flush privileges; 
+ exit 
+ 
+ Instalar el modulo de basres de datos python:
+ sudo apt-get  install python-mysqldb
